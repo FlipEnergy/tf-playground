@@ -6,8 +6,8 @@ variable "user_ocid" {
   sensitive = true
 }
 
-variable "private_key_path" {
-  default = "~/.oci/oracle_public.pem"
+variable "oci_private_key_path" {
+  default = "../../../.oci/oracle.pem"
 }
 
 variable "fingerprint" {
