@@ -8,6 +8,14 @@ variable "vm_shape" {
   default = "VM.Standard.E2.1.Micro"
 }
 
+variable "vm_ocpus" {
+  default = null
+}
+
+variable "vm_memory_gbs" {
+  default = null
+}
+
 variable "vm_os" {
   default = "Canonical Ubuntu"
 }
