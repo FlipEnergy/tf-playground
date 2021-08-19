@@ -37,7 +37,7 @@ data "oci_identity_availability_domains" "availability_domains" {
 }
 
 module "ok8s_node_1" {
-  source = "./k8s-node"
+  source = "./ok8s-node"
 
   display_name        = "Oracle K8s Node 1"
   tenancy_ocid        = var.tenancy_ocid
@@ -46,7 +46,7 @@ module "ok8s_node_1" {
 }
 
 module "ok8s_node_2" {
-  source = "./k8s-node"
+  source = "./ok8s-node"
 
   display_name        = "Oracle K8s Node 2"
   tenancy_ocid        = var.tenancy_ocid
