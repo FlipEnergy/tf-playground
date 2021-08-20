@@ -12,6 +12,15 @@ resource "oci_budget_alert_rule" "homelab_budget_alert" {
   budget_id      = oci_budget_budget.homelab_budget.id
   threshold      = 0.01
   threshold_type = "PERCENTAGE"
+  type           = "ACTUAL"
+  recipients     = "dennis.zhang.nrg@gmail.com"
+}
+
+resource "oci_budget_alert_rule" "homelab_forecast_alert" {
+  display_name   = "homelab-forecast-alert"
+  budget_id      = oci_budget_budget.homelab_budget.id
+  threshold      = 0.10
+  threshold_type = "PERCENTAGE"
   type           = "FORECAST"
   recipients     = "dennis.zhang.nrg@gmail.com"
 }

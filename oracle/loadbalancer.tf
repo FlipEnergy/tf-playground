@@ -50,9 +50,9 @@ resource "oci_load_balancer_listener" "homelab_lb_listener" {
 
 resource "oci_load_balancer_backend" "homelab_lb_backend" {
   for_each = toset([
-    module.ok8s_node_1.private_ip,
-    module.ok8s_node_2.private_ip,
-    module.ok8s_node_3.private_ip
+    module.ok8s_amd_node_1.private_ip,
+    module.ok8s_amd_node_2.private_ip,
+    module.ok8s_arm_node_1.private_ip
   ])
   load_balancer_id = oci_load_balancer_load_balancer.homelab_flex_lb.id
   backendset_name  = oci_load_balancer_backend_set.homelab_lb_set.name
