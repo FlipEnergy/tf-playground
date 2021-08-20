@@ -39,5 +39,4 @@ module "ok8s_node_3" {
   vm_shape            = "VM.Standard.A1.Flex"
   vm_ocpus            = 4
   vm_memory_gbs       = 24
-  vm_os_version       = "20.04"
 }

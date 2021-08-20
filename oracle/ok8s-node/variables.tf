@@ -9,11 +9,11 @@ variable "vm_shape" {
 }
 
 variable "vm_ocpus" {
-  default = null
+  default = 1
 }
 
 variable "vm_memory_gbs" {
-  default = null
+  default = 1
 }
 
 variable "vm_os" {
@@ -21,7 +21,7 @@ variable "vm_os" {
 }
 
 variable "vm_os_version" {
-  default = "20.04 Minimal"
+  default = "20.04"
 }
 
 variable "availability_domain" {}
