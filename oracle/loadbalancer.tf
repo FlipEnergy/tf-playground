@@ -1,3 +1,12 @@
+locals {
+  lb_ingress_routes = {
+    "homelab-flex-lb-k8s" : {
+      port       = "6443"
+      ip_address = module.ok8s_arm_node_1.private_ip
+    }
+  }
+}
+
 resource "oci_core_public_ip" "homelab_lb_public_ip" {
   display_name   = "Homelab LB"
   compartment_id = var.tenancy_ocid
@@ -12,7 +21,7 @@ resource "oci_load_balancer_load_balancer" "homelab_flex_lb" {
   display_name   = "Homelab Flex LB"
   shape          = "flexible"
   compartment_id = var.tenancy_ocid
-  subnet_ids = [oci_core_subnet.homelab_subnet.id]
+  subnet_ids     = [oci_core_subnet.homelab_subnet.id]
   reserved_ips {
     id = oci_core_public_ip.homelab_lb_public_ip.id
   }
@@ -23,12 +32,13 @@ resource "oci_load_balancer_load_balancer" "homelab_flex_lb" {
 }
 
 resource "oci_load_balancer_backend_set" "homelab_lb_set" {
-  name             = "homelab-flex-lb-backend-set"
+  for_each         = local.lb_ingress_routes
+  name             = each.key
   load_balancer_id = oci_load_balancer_load_balancer.homelab_flex_lb.id
   policy           = "ROUND_ROBIN"
 
   health_checker {
-    port                = "6443"
+    port                = each.value.port
     protocol            = "TCP"
     response_body_regex = ".*"
     url_path            = "/"
@@ -36,28 +46,24 @@ resource "oci_load_balancer_backend_set" "homelab_lb_set" {
 }
 
 resource "oci_load_balancer_listener" "homelab_lb_listener" {
+  for_each                 = local.lb_ingress_routes
   load_balancer_id         = oci_load_balancer_load_balancer.homelab_flex_lb.id
   name                     = "homelab-6443-listener"
-  default_backend_set_name = oci_load_balancer_backend_set.homelab_lb_set.name
-  port                     = 6443
+  default_backend_set_name = each.key
+  port                     = each.value.port
   protocol                 = "TCP"
 
   connection_configuration {
-    idle_timeout_in_seconds            = "2"
-    backend_tcp_proxy_protocol_version = "1"
+    idle_timeout_in_seconds = "3600"
   }
 }
 
 resource "oci_load_balancer_backend" "homelab_lb_backend" {
-  for_each = toset([
-    module.ok8s_amd_node_1.private_ip,
-    module.ok8s_amd_node_2.private_ip,
-    module.ok8s_arm_node_1.private_ip
-  ])
+  for_each         = local.lb_ingress_routes
   load_balancer_id = oci_load_balancer_load_balancer.homelab_flex_lb.id
-  backendset_name  = oci_load_balancer_backend_set.homelab_lb_set.name
-  ip_address       = each.value
-  port             = 6443
+  backendset_name  = each.key
+  ip_address       = each.value.ip_address
+  port             = each.value.port
   backup           = false
   drain            = false
   offline          = false

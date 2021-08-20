@@ -24,6 +24,10 @@ variable "vm_os_version" {
   default = "20.04"
 }
 
+variable "boot_volume_size_in_gbs" {
+  default = 50
+}
+
 variable "availability_domain" {}
 
 variable "subnet_id" {}

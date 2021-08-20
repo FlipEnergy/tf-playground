@@ -7,7 +7,7 @@ data "oci_core_images" "ubuntu_images" {
   sort_order               = "DESC"
 }
 
-resource "oci_core_instance" "ok8s_node" {
+resource "oci_core_instance" "vm_instance" {
   display_name        = var.display_name
   availability_domain = var.availability_domain
   compartment_id      = var.tenancy_ocid
@@ -19,7 +19,7 @@ resource "oci_core_instance" "ok8s_node" {
   source_details {
     source_id               = data.oci_core_images.ubuntu_images.images[0].id
     source_type             = "image"
-    boot_volume_size_in_gbs = 100
+    boot_volume_size_in_gbs = var.boot_volume_size_in_gbs
   }
   create_vnic_details {
     assign_public_ip = false

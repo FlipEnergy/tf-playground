@@ -10,35 +10,31 @@ resource "oci_core_security_list" "homelab_security_list" {
   compartment_id = var.tenancy_ocid
   vcn_id         = oci_core_vcn.homelab_vcn.id
 
-  dynamic "ingress_security_rules" {
-    for_each = [
-      {
-        description = "Allow K8s API traffic"
-        protocol    = 6 # TCP
-        source      = "0.0.0.0/0"
-        tcp_options = {
-          max = 6443
-          min = 6443
-        }
-      },
-      {
-        description = "Allow K8s Ectd traffic"
-        protocol    = 6 # TCP
-        source      = "0.0.0.0/0"
-        tcp_options = {
-          max = 2380
-          min = 2379
-        }
-      }
-    ]
-    content {
-      description = ingress_security_rules.value.description
-      protocol    = ingress_security_rules.value.protocol
-      source      = ingress_security_rules.value.source
-      tcp_options {
-        min = ingress_security_rules.value.tcp_options.min
-        max = ingress_security_rules.value.tcp_options.max
-      }
+  ingress_security_rules {
+    description = "Allow K8s API traffic"
+    protocol    = 6 # TCP
+    source      = "0.0.0.0/0"
+    tcp_options {
+      min = 6443
+      max = 6443
+    }
+  }
+  ingress_security_rules {
+    description = "Allow WG traffic"
+    protocol    = 17 # UDP
+    source      = "0.0.0.0/0"
+    udp_options {
+      min = 51820
+      max = 51820
+    }
+  }
+  ingress_security_rules {
+    description = "Allow Pi-Hole DNS traffic"
+    protocol    = 17 # UDP
+    source      = "0.0.0.0/0"
+    udp_options {
+      min = 53
+      max = 53
     }
   }
 }
@@ -70,7 +66,7 @@ resource "oci_core_subnet" "homelab_subnet" {
   vcn_id                    = oci_core_vcn.homelab_vcn.id
   prohibit_internet_ingress = false
   route_table_id            = oci_core_route_table.route_table.id
-  security_list_ids         = [
+  security_list_ids = [
     oci_core_vcn.homelab_vcn.default_security_list_id,
     oci_core_security_list.homelab_security_list.id
   ]
