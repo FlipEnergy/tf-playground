@@ -20,6 +20,15 @@ resource "oci_core_security_list" "homelab_security_list" {
           max = 6443
           min = 6443
         }
+      },
+      {
+        description = "Allow K8s Ectd traffic"
+        protocol    = 6 # TCP
+        source      = "0.0.0.0/0"
+        tcp_options = {
+          max = 2380
+          min = 2379
+        }
       }
     ]
     content {
