@@ -2,6 +2,10 @@ variable "my_email" {
   default = "dennis.zhang.nrg@gmail.com"
 }
 
+variable "my_domain" {
+  default = "pleasenoddos.com"
+}
+
 variable "cloudflare_api_key" {
   sensitive = true
 }
