@@ -1,22 +1,31 @@
+resource "cloudflare_record" "star_a_record" {
+  name = "*"
+  proxied = false
+  type = "A"
+  value = var.my_public_ip
+  zone_id = cloudflare_zone.pleasenoddos_zone.id
+}
+
 resource "cloudflare_record" "a_records" {
   for_each = {
-    "${cloudflare_zone.pleasenoddos_zone.zone}": {
-      proxied = true
-      content = var.my_public_ip
-    },
-    "*": {
-      proxied = false
-      content = var.my_public_ip
-    },
-    "www": {
-      proxied = true
-      content = var.my_public_ip
-    }
+    "${cloudflare_zone.pleasenoddos_zone.zone}" = var.my_public_ip
+    "www" = var.my_public_ip
+    "bitwarden" = var.my_public_ip
+    "focal" = var.my_public_ip
+    "freshrss" = var.my_public_ip
+    "gonic" = var.my_public_ip
+    "haste" = var.my_public_ip
+    "kube" = var.my_public_ip
+    "sharry" = var.my_public_ip
+    "stream" = var.my_public_ip
+    "whoogle" = var.my_public_ip
+    "wiki" = var.my_public_ip
+    "xyzzy" = var.my_public_ip
   }
   name = each.key
-  proxied = each.value.proxied
+  proxied = true
   type = "A"
-  value = each.value.content
+  value = each.value
   zone_id = cloudflare_zone.pleasenoddos_zone.id
 }
 
