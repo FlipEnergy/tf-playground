@@ -1,3 +1,15 @@
+variable "my_email" {
+  default = "dennis.zhang.nrg@gmail.com"
+}
+
+variable "cloudflare_api_key" {
+  sensitive = true
+}
+
+variable "my_public_ip" {
+  default = "24.16.205.63"
+}
+
 variable "tenancy_ocid" {
   sensitive = true
 }
@@ -7,7 +19,7 @@ variable "user_ocid" {
 }
 
 variable "oci_private_key_path" {
-  default = "../../../.oci/oracle.pem"
+  default = "/home/dennis/.oci/oracle.pem"
 }
 
 variable "fingerprint" {

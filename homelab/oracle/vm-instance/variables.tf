@@ -33,5 +33,5 @@ variable "availability_domain" {}
 variable "subnet_id" {}
 
 variable "ssh_priv_key_path" {
-  default = "../../../.ssh/id_rsa.pub"
+  default = "/home/dennis/.ssh/id_rsa.pub"
 }

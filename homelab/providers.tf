@@ -5,3 +5,8 @@ provider "oci" {
   fingerprint      = var.fingerprint
   region           = var.region
 }
+
+provider "cloudflare" {
+  email   = var.my_email
+  api_key = var.cloudflare_api_key
+}

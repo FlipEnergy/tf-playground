@@ -13,7 +13,7 @@ resource "oci_budget_alert_rule" "homelab_budget_alert" {
   threshold      = 0.01
   threshold_type = "PERCENTAGE"
   type           = "ACTUAL"
-  recipients     = "dennis.zhang.nrg@gmail.com"
+  recipients     = var.my_email
 }
 
 resource "oci_budget_alert_rule" "homelab_forecast_alert" {
@@ -22,5 +22,5 @@ resource "oci_budget_alert_rule" "homelab_forecast_alert" {
   threshold      = 0.10
   threshold_type = "PERCENTAGE"
   type           = "FORECAST"
-  recipients     = "dennis.zhang.nrg@gmail.com"
+  recipients     = var.my_email
 }
