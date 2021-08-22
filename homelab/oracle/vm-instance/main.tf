@@ -19,7 +19,7 @@ resource "oci_core_instance" "vm_instance" {
   source_details {
     source_id               = data.oci_core_images.ubuntu_images.images[0].id
     source_type             = "image"
-    boot_volume_size_in_gbs = var.boot_volume_size_in_gbs
+    boot_volume_size_in_gbs = 50
   }
   create_vnic_details {
     assign_public_ip = false
