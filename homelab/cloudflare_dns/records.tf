@@ -15,6 +15,7 @@ resource "cloudflare_record" "a_records" {
     "freshrss"                                  = var.my_public_ip
     "gonic"                                     = var.my_public_ip
     "haste"                                     = var.my_public_ip
+    "influx"                                    = var.oracle_lb_public_ip
     "kube"                                      = var.my_public_ip
     "sharry"                                    = var.my_public_ip
     "stream"                                    = var.my_public_ip
@@ -37,23 +38,5 @@ resource "cloudflare_record" "cname_records" {
   proxied = true
   type    = "CNAME"
   value   = each.value
-  zone_id = cloudflare_zone.pleasenoddos_zone.id
-}
-
-
-resource "cloudflare_record" "txt_records" {
-  for_each = {
-    "acme1" : {
-      name    = "_acme-challenge"
-      content = "cGG856uboRxSYnid8SE54ApLU4mSieJZMJdwfz_3zQQ"
-    },
-    "acme2" : {
-      name    = "_acme-challenge"
-      content = "9JD8BDp3Va6JcQW2-0k9RHlgAKfLnuWQlz3QTvWXHms"
-    }
-  }
-  name    = each.value.name
-  type    = "TXT"
-  value   = each.value.content
   zone_id = cloudflare_zone.pleasenoddos_zone.id
 }
