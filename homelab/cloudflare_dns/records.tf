@@ -36,14 +36,6 @@ resource "cloudflare_record" "a_records" {
       name = "haste"
       ip =  var.my_public_ip
     },
-    "Influx 1": {
-      name = "influx"
-      ip = var.ok8s_node_1_public_ip
-    },
-    "Influx 2": {
-      name = "influx"
-      ip = var.ok8s_node_2_public_ip
-    },
     "Kube Ops View": {
       name = "kube"
       ip = var.my_public_ip
