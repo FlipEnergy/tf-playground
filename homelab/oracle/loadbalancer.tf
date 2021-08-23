@@ -48,25 +48,74 @@ resource "oci_load_balancer_certificate" "homelab_lb_cert" {
 }
 
 resource "oci_load_balancer_backend_set" "homelab_lb_set" {
-  name             = "https-backend-set"
+  name             = "k8s-backend-set"
   load_balancer_id = oci_load_balancer_load_balancer.homelab_flex_lb.id
   policy           = "ROUND_ROBIN"
 
   health_checker {
-    interval_ms         = 30000
+    interval_ms         = 15000
+    retries             = 3
     port                = 80
-    protocol            = "TCP"
+    timeout_in_millis   = 5000
+    protocol            = "HTTP"
     response_body_regex = ".*"
+    url_path            = "/"
+    return_code = 404
+  }
+}
+
+resource "oci_load_balancer_backend_set" "empty_lb_set" {
+  name             = "empty-backend-set"
+  load_balancer_id = oci_load_balancer_load_balancer.homelab_flex_lb.id
+  policy           = "ROUND_ROBIN"
+
+  health_checker {
+    protocol            = "HTTP"
     url_path            = "/"
   }
 }
 
-resource "oci_load_balancer_listener" "homelab_lb_listener" {
+resource "oci_load_balancer_rule_set" "https_redirect_rule_set" {
+  name = "http_to_https_redirect"
+  items {
+    action = "REDIRECT"
+    conditions {
+      attribute_name  = "PATH"
+      attribute_value = "/"
+      operator        = "PREFIX_MATCH"
+    }
+    redirect_uri {
+      protocol = "https"
+      host     = "{host}"
+      port     = 443
+      path     = "{path}"
+      query    = "{query}"
+    }
+    response_code = 301
+  }
+  load_balancer_id = oci_load_balancer_load_balancer.homelab_flex_lb.id
+}
+
+resource "oci_load_balancer_listener" "homelab_lb_http_listener" {
+  name                     = "http-listener"
   load_balancer_id         = oci_load_balancer_load_balancer.homelab_flex_lb.id
+  default_backend_set_name = oci_load_balancer_backend_set.empty_lb_set.name
+  port                     = 80
+  protocol                 = "HTTP"
+  rule_set_names           = [oci_load_balancer_rule_set.https_redirect_rule_set.name]
+
+  connection_configuration {
+    idle_timeout_in_seconds = 10
+  }
+
+}
+
+resource "oci_load_balancer_listener" "homelab_lb_https_listener" {
   name                     = "https-listener"
+  load_balancer_id         = oci_load_balancer_load_balancer.homelab_flex_lb.id
   default_backend_set_name = oci_load_balancer_backend_set.homelab_lb_set.name
   port                     = 443
-  protocol                 = "TCP"
+  protocol                 = "HTTP"
 
   connection_configuration {
     idle_timeout_in_seconds = 3600
@@ -75,6 +124,7 @@ resource "oci_load_balancer_listener" "homelab_lb_listener" {
   ssl_configuration {
     certificate_name        = oci_load_balancer_certificate.homelab_lb_cert.certificate_name
     verify_peer_certificate = false
+    protocols               = ["TLSv1.2"]
   }
 }
 

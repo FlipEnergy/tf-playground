@@ -22,11 +22,20 @@ resource "oci_core_security_list" "k8s_security_list" {
   ingress_security_rules {
     description = "Allow K8s http traffic"
     protocol    = "6" # TCP
-    source      = "${oci_core_public_ip.homelab_lb_public_ip.ip_address}/32"
+    source      = "0.0.0.0/0"
 
     tcp_options {
       max = 80
       min = 80
+    }
+  }
+  ingress_security_rules {
+    description = "Allow K8s https traffic"
+    protocol    = 6 # TCP
+    source      = "0.0.0.0/0"
+    tcp_options {
+      min = 443
+      max = 443
     }
   }
   ingress_security_rules {
