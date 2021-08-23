@@ -8,25 +8,71 @@ resource "cloudflare_record" "star_a_record" {
 
 resource "cloudflare_record" "a_records" {
   for_each = {
-    "${cloudflare_zone.pleasenoddos_zone.zone}" = var.my_public_ip
-    "www"                                       = var.my_public_ip
-    "bitwarden"                                 = var.my_public_ip
-    "focal"                                     = var.my_public_ip
-    "freshrss"                                  = var.my_public_ip
-    "gonic"                                     = var.my_public_ip
-    "haste"                                     = var.my_public_ip
-    "influx"                                    = var.oracle_lb_public_ip
-    "kube"                                      = var.my_public_ip
-    "sharry"                                    = var.my_public_ip
-    "stream"                                    = var.my_public_ip
-    "whoogle"                                   = var.my_public_ip
-    "wiki"                                      = var.my_public_ip
-    "xyzzy"                                     = var.my_public_ip
+    "root": {
+      name = "${cloudflare_zone.pleasenoddos_zone.zone}"
+      ip = var.my_public_ip
+    },
+    "www": {
+      name = "www"
+      ip = var.my_public_ip
+    },
+    "Vaultwarden": {
+      name = "bitwarden"
+      ip = var.my_public_ip
+    },
+    "Focalboard": {
+      name = "focal"
+      ip =  var.my_public_ip
+    }
+    "Freshrss": {
+      name = "freshrss"
+      ip = var.my_public_ip
+    },
+    "Gonic": {
+      name = "gonic"
+      ip = var.my_public_ip
+    },
+    "Hastebin": {
+      name = "haste"
+      ip =  var.my_public_ip
+    },
+    "Influx 1": {
+      name = "influx"
+      ip = var.ok8s_node_1_public_ip
+    },
+    "Influx 2": {
+      name = "influx"
+      ip = var.ok8s_node_2_public_ip
+    },
+    "Kube Ops View": {
+      name = "kube"
+      ip = var.my_public_ip
+    },
+    "Sharry": {
+      name = "sharry"
+      ip = var.my_public_ip
+    },
+    "Owncast": {
+      name = "stream"
+      ip = var.my_public_ip
+    }
+    "Whoogle": {
+      name = "whoogle"
+      ip = var.my_public_ip
+    },
+    "Wiki JS": {
+      name = "wiki"
+      ip = var.my_public_ip
+    },
+    "Xyzzy": {
+      name = "xyzzy"
+      ip = var.my_public_ip
+    }
   }
-  name    = each.key
+  name    = each.value.name
   proxied = true
   type    = "A"
-  value   = each.value
+  value   = each.value.ip
   zone_id = cloudflare_zone.pleasenoddos_zone.id
 }
 

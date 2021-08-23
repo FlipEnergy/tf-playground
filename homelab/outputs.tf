@@ -27,7 +27,3 @@ output "ok8s_arm_node_1_private_ip" {
 output "ok8s_arm_node_2_private_ip" {
   value = module.oracle_homelab.ok8s_arm_node_2_private_ip
 }
-
-output "oracle_lb_public_ip" {
-  value = module.oracle_homelab.lb_public_ip
-}

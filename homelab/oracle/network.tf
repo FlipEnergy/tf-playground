@@ -21,7 +21,7 @@ resource "oci_core_security_list" "k8s_security_list" {
   }
   ingress_security_rules {
     description = "Allow K8s http traffic"
-    protocol    = "6" # TCP
+    protocol    = 6 # TCP
     source      = "0.0.0.0/0"
 
     tcp_options {
