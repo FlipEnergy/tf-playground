@@ -19,43 +19,25 @@ resource "oci_core_security_list" "k8s_security_list" {
       max = 6443
     }
   }
-  ingress_security_rules {
-    description = "Allow K8s http traffic"
-    protocol    = 6 # TCP
-    source      = "0.0.0.0/0"
+  # ingress_security_rules {
+  #   description = "Allow K8s http traffic"
+  #   protocol    = 6 # TCP
+  #   source      = "0.0.0.0/0"
 
-    tcp_options {
-      max = 80
-      min = 80
-    }
-  }
-  ingress_security_rules {
-    description = "Allow K8s https traffic"
-    protocol    = 6 # TCP
-    source      = "0.0.0.0/0"
-    tcp_options {
-      min = 443
-      max = 443
-    }
-  }
-  ingress_security_rules {
-    description = "Allow WG traffic"
-    protocol    = 17 # UDP
-    source      = "0.0.0.0/0"
-    udp_options {
-      min = 51820
-      max = 51820
-    }
-  }
-  ingress_security_rules {
-    description = "Allow Pi-Hole DNS traffic"
-    protocol    = 17 # UDP
-    source      = "0.0.0.0/0"
-    udp_options {
-      min = 53
-      max = 53
-    }
-  }
+  #   tcp_options {
+  #     max = 80
+  #     min = 80
+  #   }
+  # }
+  # ingress_security_rules {
+  #   description = "Allow K8s https traffic"
+  #   protocol    = 6 # TCP
+  #   source      = "0.0.0.0/0"
+  #   tcp_options {
+  #     min = 443
+  #     max = 443
+  #   }
+  # }
 }
 
 resource "oci_core_security_list" "pihole_security_list" {
