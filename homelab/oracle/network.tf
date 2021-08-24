@@ -5,20 +5,11 @@ resource "oci_core_vcn" "homelab_vcn" {
   cidr_blocks = ["10.0.0.0/16"]
 }
 
-resource "oci_core_security_list" "k8s_security_list" {
-  display_name   = "K8s Security List"
+resource "oci_core_security_list" "https_security_list" {
+  display_name   = "HTTPS Security List"
   compartment_id = var.tenancy_ocid
   vcn_id         = oci_core_vcn.homelab_vcn.id
 
-  ingress_security_rules {
-    description = "Allow K8s API traffic"
-    protocol    = 6 # TCP
-    source      = "0.0.0.0/0"
-    tcp_options {
-      min = 6443
-      max = 6443
-    }
-  }
   ingress_security_rules {
     description = "Allow K8s http traffic"
     protocol    = 6 # TCP
@@ -36,24 +27,6 @@ resource "oci_core_security_list" "k8s_security_list" {
     tcp_options {
       min = 443
       max = 443
-    }
-  }
-  ingress_security_rules {
-    description = "Allow WG traffic"
-    protocol    = 17 # UDP
-    source      = "0.0.0.0/0"
-    udp_options {
-      min = 51820
-      max = 51820
-    }
-  }
-  ingress_security_rules {
-    description = "Allow Pi-Hole DNS traffic"
-    protocol    = 17 # UDP
-    source      = "0.0.0.0/0"
-    udp_options {
-      min = 53
-      max = 53
     }
   }
 }
@@ -94,8 +67,8 @@ resource "oci_core_route_table" "route_table" {
   }
 }
 
-resource "oci_core_subnet" "k8s_subnet" {
-  display_name              = "K8s Subnet"
+resource "oci_core_subnet" "https_subnet" {
+  display_name              = "HTTPS Subnet"
   cidr_block                = "10.0.69.0/24"
   compartment_id            = var.tenancy_ocid
   vcn_id                    = oci_core_vcn.homelab_vcn.id
@@ -103,7 +76,7 @@ resource "oci_core_subnet" "k8s_subnet" {
   route_table_id            = oci_core_route_table.route_table.id
   security_list_ids = [
     oci_core_vcn.homelab_vcn.default_security_list_id,
-    oci_core_security_list.k8s_security_list.id
+    oci_core_security_list.https_security_list.id
   ]
 }
 
