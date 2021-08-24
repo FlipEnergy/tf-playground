@@ -1,11 +1,3 @@
-resource "cloudflare_record" "star_a_record" {
-  name    = "*"
-  proxied = false
-  type    = "A"
-  value   = var.my_public_ip
-  zone_id = cloudflare_zone.pleasenoddos_zone.id
-}
-
 resource "cloudflare_record" "a_records" {
   for_each = {
     "root": {
@@ -16,7 +8,7 @@ resource "cloudflare_record" "a_records" {
       name = "www"
       ip = var.my_public_ip
     },
-    "Vaultwarden": {
+    "Bitwarden": {
       name = "bitwarden"
       ip = var.my_public_ip
     },
@@ -36,6 +28,10 @@ resource "cloudflare_record" "a_records" {
       name = "haste"
       ip =  var.my_public_ip
     },
+    "Influxdb 2": {
+      name = "influx"
+      ip = var.oracle_arm_1_public_ip
+    }
     "Kube Ops View": {
       name = "kube"
       ip = var.my_public_ip
