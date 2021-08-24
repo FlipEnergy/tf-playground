@@ -26,7 +26,7 @@ resource "cloudflare_record" "a_records" {
     },
     "Hastebin": {
       name = "haste"
-      ip =  var.my_public_ip
+      ip =  var.oracle_arm_1_public_ip
     },
     "Influxdb 2": {
       name = "influx"
