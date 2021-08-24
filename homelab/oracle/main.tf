@@ -5,7 +5,7 @@ data "oci_identity_availability_domains" "availability_domains" {
 module "pi_hole" {
   source = "./vm-instance"
 
-  display_name        = "Pi-Hole"
+  display_name        = "Oracle Pi-Hole"
   tenancy_ocid        = var.tenancy_ocid
   availability_domain = data.oci_identity_availability_domains.availability_domains.availability_domains[0].name
   subnet_id           = oci_core_subnet.pihole_subnet.id
