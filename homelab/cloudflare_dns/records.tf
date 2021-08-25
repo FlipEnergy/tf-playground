@@ -20,6 +20,10 @@ resource "cloudflare_record" "a_records" {
       name = "freshrss"
       ip = var.my_public_ip
     },
+    "Jellyfin": {
+      name = "jelly"
+      ip = var.my_public_ip
+    },
     "Gonic": {
       name = "gonic"
       ip = var.my_public_ip
