@@ -46,7 +46,7 @@ resource "cloudflare_record" "a_records" {
     }
     "Whoogle": {
       name = "whoogle"
-      ip = var.my_public_ip
+      ip = var.oracle_arm_1_public_ip
     },
     "Wiki JS": {
       name = "wiki"
