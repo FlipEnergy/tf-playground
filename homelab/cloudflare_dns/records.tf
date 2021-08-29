@@ -2,7 +2,7 @@ resource "cloudflare_record" "a_records" {
   for_each = {
     "root": {
       name = "${cloudflare_zone.pleasenoddos_zone.zone}"
-      ip = var.my_public_ip
+      ip = var.oracle_arm_1_public_ip
     },
     "www": {
       name = "www"
