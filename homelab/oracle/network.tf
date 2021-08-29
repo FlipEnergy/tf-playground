@@ -11,6 +11,17 @@ resource "oci_core_security_list" "https_security_list" {
   vcn_id         = oci_core_vcn.homelab_vcn.id
 
   ingress_security_rules {
+    description = "Allow K8s API traffic"
+    protocol    = 6 # TCP
+    source      = "0.0.0.0/0"
+
+    tcp_options {
+      max = 6443
+      min = 6443
+    }
+  }
+
+  ingress_security_rules {
     description = "Allow K8s http traffic"
     protocol    = 6 # TCP
     source      = "0.0.0.0/0"
