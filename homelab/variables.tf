@@ -33,3 +33,11 @@ variable "fingerprint" {
 variable "region" {
   default = "ca-toronto-1"
 }
+
+variable "b2_app_key" {
+  sensitive = true
+}
+
+variable "b2_key_id" {
+  sensitive = true
+}

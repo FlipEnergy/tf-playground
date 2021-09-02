@@ -1,64 +1,64 @@
 resource "cloudflare_record" "a_records" {
   for_each = {
-    "root": {
+    "root" : {
       name = "${cloudflare_zone.pleasenoddos_zone.zone}"
-      ip = var.oracle_arm_1_public_ip
+      ip   = var.oracle_arm_1_public_ip
     },
-    "www": {
+    "www" : {
       name = "www"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Bitwarden": {
+    "Bitwarden" : {
       name = "bitwarden"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Focalboard": {
+    "Focalboard" : {
       name = "focal"
-      ip =  var.my_public_ip
+      ip   = var.my_public_ip
     }
-    "Freshrss": {
+    "Freshrss" : {
       name = "freshrss"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Jellyfin": {
+    "Jellyfin" : {
       name = "jelly"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Gonic": {
+    "Gonic" : {
       name = "gonic"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Hastebin": {
+    "Hastebin" : {
       name = "haste"
-      ip =  var.oracle_arm_1_public_ip
+      ip   = var.oracle_arm_1_public_ip
     },
-    "Influxdb 2": {
+    "Influxdb 2" : {
       name = "influx"
-      ip = var.oracle_arm_1_public_ip
+      ip   = var.oracle_arm_1_public_ip
     }
-    "Kube Ops View": {
+    "Kube Ops View" : {
       name = "kube"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Sharry": {
+    "Sharry" : {
       name = "sharry"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Owncast": {
+    "Owncast" : {
       name = "stream"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     }
-    "Whoogle": {
+    "Whoogle" : {
       name = "whoogle"
-      ip = var.oracle_arm_1_public_ip
+      ip   = var.oracle_arm_1_public_ip
     },
-    "Wiki JS": {
+    "Wiki JS" : {
       name = "wiki"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     },
-    "Xyzzy": {
+    "Xyzzy" : {
       name = "xyzzy"
-      ip = var.my_public_ip
+      ip   = var.my_public_ip
     }
   }
   name    = each.value.name

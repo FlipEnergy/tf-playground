@@ -5,3 +5,7 @@ tenancy_ocid =
 user_ocid =
 
 fingerprint =
+
+b2_app_key =
+
+b2_key_id =

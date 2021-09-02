@@ -16,6 +16,10 @@ terraform {
       source  = "hashicorp/oci"
       version = "~> 4.40"
     }
+    b2 = {
+      source  = "backblaze/b2"
+      version = "~> 0.6"
+    }
   }
   required_version = "~> 1.0.4"
 }

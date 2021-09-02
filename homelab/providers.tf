@@ -14,3 +14,8 @@ provider "oci" {
   fingerprint      = var.fingerprint
   region           = var.region
 }
+
+provider "b2" {
+  application_key    = var.b2_app_key
+  application_key_id = var.b2_key_id
+}
