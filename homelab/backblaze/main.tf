@@ -7,6 +7,7 @@ resource "b2_application_key" "duplicati_backup_key" {
   key_name = "duplicati-backup"
   capabilities = [
     "deleteFiles",
+    "listBuckets",
     "listFiles",
     "readBuckets",
     "readFiles",
