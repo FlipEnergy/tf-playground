@@ -35,7 +35,7 @@ resource "cloudflare_record" "a_records" {
     "Influxdb 2" : {
       name = "influx"
       ip   = var.oracle_arm_1_public_ip
-    }
+    },
     "Kube Ops View" : {
       name = "kube"
       ip   = var.my_public_ip
@@ -46,6 +46,10 @@ resource "cloudflare_record" "a_records" {
     },
     "Owncast" : {
       name = "stream"
+      ip   = var.my_public_ip
+    },
+    "Nextcloud" : {
+      name = "cloud"
       ip   = var.my_public_ip
     }
     "Whoogle" : {
