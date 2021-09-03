@@ -1,20 +1,16 @@
-resource "b2_bucket" "duplicati_bucket" {
-  bucket_name = "flipenergy-homelab-duplicati"
+resource "b2_bucket" "truenas_backup" {
+  bucket_name = "flipenergy-homelab-truenas-backup"
   bucket_type = "allPrivate"
 }
 
-resource "b2_application_key" "duplicati_key" {
-  key_name = "Duplicati"
+resource "b2_application_key" "duplicati_backup_key" {
+  key_name = "Duplicati Backup"
   capabilities = [
     "deleteFiles",
-    "listBuckets",
     "listFiles",
-    "readBucketEncryption",
     "readBuckets",
     "readFiles",
-    "shareFiles",
-    "writeBucketEncryption",
     "writeFiles"
   ]
-  bucket_id = b2_bucket.duplicati_bucket.bucket_id
+  bucket_id = b2_bucket.truenas_backup.bucket_id
 }

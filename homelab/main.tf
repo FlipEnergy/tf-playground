@@ -24,7 +24,6 @@ module "cloudflare_dns" {
   oracle_arm_1_public_ip = module.oracle_homelab.oracle_arm_1_public_ip
 }
 
-# Uncomment when backblaze allows importing
-# module "backblaze" {
-#   source = "./backblaze"
-# }
+module "backblaze" {
+  source = "./backblaze"
+}
