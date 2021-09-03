@@ -4,7 +4,7 @@ resource "b2_bucket" "truenas_backup" {
 }
 
 resource "b2_application_key" "duplicati_backup_key" {
-  key_name = "Duplicati Backup"
+  key_name = "duplicati-backup"
   capabilities = [
     "deleteFiles",
     "listFiles",
