@@ -3,13 +3,10 @@ resource "b2_bucket" "truenas_backup" {
   bucket_type = "allPrivate"
 }
 
-resource "b2_application_key" "duplicati_backup_key" {
-  key_name = "duplicati-backup"
+resource "b2_application_key" "backup_key" {
+  key_name = "backup-key"
   capabilities = [
     "deleteFiles",
-    "listBuckets",
-    "listFiles",
-    "readBuckets",
     "readFiles",
     "writeFiles"
   ]
