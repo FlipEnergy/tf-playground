@@ -40,10 +40,6 @@ resource "cloudflare_record" "a_records" {
       name = "kube"
       ip   = var.my_public_ip
     },
-    "Sharry" : {
-      name = "sharry"
-      ip   = var.my_public_ip
-    },
     "Owncast" : {
       name = "stream"
       ip   = var.my_public_ip
