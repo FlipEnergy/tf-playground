@@ -8,3 +8,6 @@ A repo for my Terraform configurations
 - https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/tf-provider/01-summary.htm
 - https://registry.terraform.io/providers/hashicorp/oci/latest/docs
 - https://github.com/terraform-providers/terraform-provider-oci
+
+# My homelab setup
+![Homelab DIagram](https://pleasenoddos.com/img/homelab.jpg)
