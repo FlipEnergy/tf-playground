@@ -23,7 +23,7 @@ variable "user_ocid" {
 }
 
 variable "oci_private_key_path" {
-  default = "/home/dennis/.oci/oracle.pem"
+  default = "/home/dennis/.ssh/oracle.pem"
 }
 
 variable "fingerprint" {

@@ -16,6 +16,10 @@ variable "vm_memory_gbs" {
   default = 1
 }
 
+variable "vm_image_override" {
+  default = ""
+}
+
 variable "vm_os" {
   default = "Canonical Ubuntu"
 }
@@ -33,5 +37,5 @@ variable "availability_domain" {}
 variable "subnet_id" {}
 
 variable "ssh_priv_key_path" {
-  default = "/home/dennis/.ssh/id_rsa.pub"
+  default = "/home/dennis/.ssh/oracle_ssh.pub"
 }

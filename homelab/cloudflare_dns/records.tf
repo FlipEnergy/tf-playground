@@ -6,7 +6,7 @@ resource "cloudflare_record" "a_records" {
     },
     "www" : {
       name = "www"
-      ip   = var.my_public_ip
+      ip   = var.oracle_arm_1_public_ip
     },
     "Bitwarden" : {
       name = "bitwarden"
@@ -22,10 +22,6 @@ resource "cloudflare_record" "a_records" {
     },
     "Jellyfin" : {
       name = "jelly"
-      ip   = var.my_public_ip
-    },
-    "Gonic" : {
-      name = "gonic"
       ip   = var.my_public_ip
     },
     "Hastebin" : {
@@ -54,10 +50,6 @@ resource "cloudflare_record" "a_records" {
     },
     "Wiki JS" : {
       name = "wiki"
-      ip   = var.my_public_ip
-    },
-    "Xyzzy" : {
-      name = "xyzzy"
       ip   = var.my_public_ip
     }
   }

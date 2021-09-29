@@ -17,7 +17,7 @@ resource "oci_core_instance" "vm_instance" {
     memory_in_gbs = var.vm_memory_gbs
   }
   source_details {
-    source_id               = data.oci_core_images.ubuntu_images.images[0].id
+    source_id               = var.vm_image_override != "" ? var.vm_image_override : data.oci_core_images.ubuntu_images.images[0].id
     source_type             = "image"
     boot_volume_size_in_gbs = 50
   }
