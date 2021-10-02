@@ -12,10 +12,6 @@ resource "cloudflare_record" "a_records" {
       name = "bitwarden"
       ip   = var.my_public_ip
     },
-    "Focalboard" : {
-      name = "focal"
-      ip   = var.my_public_ip
-    }
     "Freshrss" : {
       name = "freshrss"
       ip   = var.my_public_ip
