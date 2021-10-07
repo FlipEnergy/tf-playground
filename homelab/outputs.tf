@@ -25,6 +25,6 @@ output "b2_app_key_id" {
 }
 
 output "b2_app_key" {
-  value = module.backblaze.app_key
+  value     = module.backblaze.app_key
   sensitive = true
 }
