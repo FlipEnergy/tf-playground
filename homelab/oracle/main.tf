@@ -19,7 +19,6 @@ module "oracle_arm_1" {
   tenancy_ocid        = var.tenancy_ocid
   availability_domain = data.oci_identity_availability_domains.availability_domains.availability_domains[0].name
   subnet_id           = oci_core_subnet.https_subnet.id
-  vm_image_override   = "ocid1.image.oc1.ca-toronto-1.aaaaaaaaaxerkt2xp6g2jc4mwas6qq3lt4n3drmaneufwqksx6oyadpkky7q"
   vm_shape            = "VM.Standard.A1.Flex"
   vm_ocpus            = 4
   vm_memory_gbs       = 24

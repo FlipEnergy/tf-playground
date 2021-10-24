@@ -5,6 +5,7 @@ provider "registry.terraform.io/backblaze/b2" {
   version     = "0.6.1"
   constraints = "~> 0.6"
   hashes = [
+    "h1:8F2hDwol7Fp6XDEijcwScOydXu8Km9EZ9/Ma+R2jqaQ=",
     "h1:oFdD9upUL9y28BJ0T/6VPzJjxb8ZuKOV01JoXQjHcCA=",
     "zh:42c849abb1c722f94ed033a9286f68c4cf4245459cd05121ee8b75327f9844f3",
     "zh:a56f6bb0d1acf178e2dd6e2c83f807b8a35daa70174f63fd503af0992193e55e",
@@ -17,6 +18,7 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
   version     = "2.25.0"
   constraints = "~> 2.25"
   hashes = [
+    "h1:bHqH6i2d6cvKcVPh4LE53JQsIHiFH95Ucr7u3l7oBeA=",
     "h1:raEhY+rMHKBNMwXBWYZp4DUua3JNDq5frLu6VOl71Zg=",
     "zh:0c2e4665615fa732cd7a025599afa788cf980d1e3e89b20127f8dd5198a3e124",
     "zh:1d09a74f6ee533ae9db4064a9a6ec466ca7e7f53ed2033f95ce66ff066becc9e",
@@ -36,9 +38,10 @@ provider "registry.terraform.io/cloudflare/cloudflare" {
 
 provider "registry.terraform.io/hashicorp/oci" {
   version     = "4.40.0"
-  constraints = "~> 4.40.0"
+  constraints = "~> 4.40"
   hashes = [
     "h1:T1uQ7j1FnL+U7Ob8AcmWlUzjMB6Zlxy7uV1BJNuhVas=",
+    "h1:gMlxekZi7Qmmosp5ZA3CnQPxxhbmns3K0C617ZaJ+Wo=",
     "zh:0d839743e27cb56c1af238291c100edb52974e34bbdae2e08eaac765521037f2",
     "zh:1ee5a0d8559af135eae9977e21c1308a9fdcb727b39b833a484749d5a0255867",
     "zh:2746ad3d492f6ee2eca42cf61ec43cd68e6d205dd7992ecee3ca935d3ece68df",
@@ -56,6 +59,7 @@ provider "registry.terraform.io/hashicorp/tls" {
   version     = "3.1.0"
   constraints = "~> 3.1"
   hashes = [
+    "h1:XTU9f6sGMZHOT8r/+LWCz2BZOPH127FBTPjMMEAAu1U=",
     "h1:fUJX8Zxx38e2kBln+zWr1Tl41X+OuiE++REjrEyiOM4=",
     "zh:3d46616b41fea215566f4a957b6d3a1aa43f1f75c26776d72a98bdba79439db6",
     "zh:623a203817a6dafa86f1b4141b645159e07ec418c82fe40acd4d2a27543cbaa2",
@@ -76,6 +80,7 @@ provider "registry.terraform.io/vancluever/acme" {
   constraints = "~> 2.5"
   hashes = [
     "h1:FxLX47w4e5t7VtOv6R2Tb5wiAwhhP1Ci8uc9wMuWoOU=",
+    "h1:tao0Wr1nNNjGg+/5BFBYKTd1p2vEt+pR7bNQNQdhdfw=",
     "zh:10dabb8a772f5ad0c6c4779747fcebf75439214ce51fc9f51ed6d28b63d4f527",
     "zh:17361bf37ffab7384276eadbb9f6f616fae7b46560eb0c04b5635bc8a2de2da2",
     "zh:414be8c5601e0b5ccab970eb0eb15cf67d48bd1c573b2797865e3820d11343d8",
