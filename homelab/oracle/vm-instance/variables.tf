@@ -36,6 +36,6 @@ variable "availability_domain" {}
 
 variable "subnet_id" {}
 
-variable "ssh_priv_key_path" {
+variable "ssh_pub_key_path" {
   default = "/home/dennis/.ssh/oracle_ssh.pub"
 }

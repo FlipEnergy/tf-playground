@@ -26,7 +26,7 @@ resource "oci_core_instance" "vm_instance" {
     subnet_id        = var.subnet_id
   }
   metadata = {
-    ssh_authorized_keys = file(var.ssh_priv_key_path)
+    ssh_authorized_keys = file(var.ssh_pub_key_path)
   }
   preserve_boot_volume = false
 }
