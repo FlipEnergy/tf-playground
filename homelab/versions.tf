@@ -18,7 +18,7 @@ terraform {
     }
     b2 = {
       source  = "backblaze/b2"
-      version = "~> 0.6"
+      version = "~> 0.7"
     }
   }
   required_version = "~> 1.1.3"
