@@ -49,11 +49,6 @@ resource "cloudflare_record" "a_records" {
       name    = "cloud"
       ip      = var.my_public_ip
       proxied = true
-    }
-    "Whoogle" : {
-      name    = "whoogle"
-      ip      = var.oracle_arm_1_public_ip
-      proxied = true
     },
     "Wiki JS" : {
       name    = "wiki"
