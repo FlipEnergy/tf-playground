@@ -8,9 +8,9 @@ output "private_key" {
   sensitive = true
 }
 
-output "pi_hole_public_ip" {
-  value = module.oracle_homelab.pi_hole_public_ip
-}
+# output "pi_hole_public_ip" {
+#   value = module.oracle_homelab.pi_hole_public_ip
+# }
 
 output "oracle_arm_1_public_ip" {
   value = module.oracle_homelab.oracle_arm_1_public_ip
