@@ -20,7 +20,6 @@ module "cloudflare_dns" {
   source = "./cloudflare_dns"
 
   my_domain              = var.my_domain
-  my_public_ip           = var.my_public_ip
   oracle_arm_1_public_ip = module.oracle_homelab.oracle_arm_1_public_ip
 }
 

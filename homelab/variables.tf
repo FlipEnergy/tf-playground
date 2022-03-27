@@ -11,7 +11,7 @@ variable "cloudflare_api_key" {
 }
 
 variable "my_public_ip" {
-  default = "24.16.205.63"
+  default = "71.197.233.153"
 }
 
 variable "tenancy_ocid" {

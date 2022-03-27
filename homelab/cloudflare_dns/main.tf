@@ -1,3 +1,7 @@
+data "http" "my_public_ip" {
+  url = "http://ipv4.icanhazip.com"
+}
+
 resource "cloudflare_zone" "pleasenoddos_zone" {
   zone = var.my_domain
 }

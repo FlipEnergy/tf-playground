@@ -12,17 +12,17 @@ resource "cloudflare_record" "a_records" {
     },
     "Bitwarden" : {
       name    = "bitwarden"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
     "Freshrss" : {
       name    = "freshrss"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
     "Jellyfin" : {
       name    = "jelly"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
     "Hastebin" : {
@@ -37,27 +37,27 @@ resource "cloudflare_record" "a_records" {
     },
     "Kube Ops View" : {
       name    = "kube"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
     "Owncast" : {
       name    = "stream"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
     "Nextcloud" : {
       name    = "cloud"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
     "Wiki JS" : {
       name    = "wiki"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
     "Wireguard" : {
       name    = "wg"
-      ip      = var.my_public_ip
+      ip      = chomp(data.http.my_public_ip.body)
       proxied = false
     }
   }
