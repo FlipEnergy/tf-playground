@@ -26,3 +26,17 @@ module "cloudflare_dns" {
 module "backblaze" {
   source = "./backblaze"
 }
+
+resource "kubernetes_secret" "default_ingress_nginx_tls" {
+  metadata {
+    name = "letsencrypt-tls"
+    namespace = "default"
+  }
+
+  data = {
+    "tls.crt" = base64encode("${module.letsencrypt.certificate}${module.letsencrypt.issuer_pem}")
+    "tls.key" = base64encode(module.letsencrypt.private_key)
+  }
+
+  type = "kubernetes.io/tls"
+}

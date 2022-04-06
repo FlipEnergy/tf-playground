@@ -19,3 +19,8 @@ provider "b2" {
   application_key    = var.b2_app_key
   application_key_id = var.b2_key_id
 }
+
+provider "kubernetes" {
+  config_path    = "~/.kube/config"
+  config_context = "homelab"
+}

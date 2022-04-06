@@ -20,6 +20,10 @@ terraform {
       source  = "backblaze/b2"
       version = "~> 0.7"
     }
+    kubernetes = {
+      source = "hashicorp/kubernetes"
+      version = "~> 2.9"
+    }
   }
   required_version = "~> 1.1.3"
 }
