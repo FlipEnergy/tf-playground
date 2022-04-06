@@ -27,16 +27,22 @@ module "backblaze" {
   source = "./backblaze"
 }
 
-resource "kubernetes_secret" "default_ingress_nginx_tls" {
-  metadata {
-    name = "letsencrypt-tls"
-    namespace = "default"
+module "homelab_k8s" {
+  source = "./kubernetes"
+  providers = {
+    kubernetes = kubernetes.homelab
   }
 
-  data = {
-    "tls.crt" = base64encode("${module.letsencrypt.certificate}${module.letsencrypt.issuer_pem}")
-    "tls.key" = base64encode(module.letsencrypt.private_key)
+  cert = "${module.letsencrypt.certificate}${module.letsencrypt.issuer_pem}"
+  key = module.letsencrypt.private_key
+}
+
+module "oracle_k8s" {
+  source = "./kubernetes"
+  providers = {
+    kubernetes = kubernetes.oracle
   }
 
-  type = "kubernetes.io/tls"
+  cert = "${module.letsencrypt.certificate}${module.letsencrypt.issuer_pem}"
+  key = module.letsencrypt.private_key
 }

@@ -21,6 +21,13 @@ provider "b2" {
 }
 
 provider "kubernetes" {
+  alias = "homelab"
   config_path    = "~/.kube/config"
   config_context = "homelab"
+}
+
+provider "kubernetes" {
+  alias = "oracle"
+  config_path    = "~/.kube/config"
+  config_context = "oracle"
 }
