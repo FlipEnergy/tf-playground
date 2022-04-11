@@ -1,6 +1,4 @@
-variable "cert" {
-  sensitive = true
-}
+variable "cert" {}
 
 variable "key" {
   sensitive = true
