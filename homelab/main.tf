@@ -11,9 +11,6 @@ module "oracle_homelab" {
 
   tenancy_ocid    = var.tenancy_ocid
   my_email        = var.my_email
-  cert_issuer_pem = module.letsencrypt.issuer_pem
-  cert_pem        = module.letsencrypt.certificate
-  cert_priv_key   = module.letsencrypt.private_key
 }
 
 module "cloudflare_dns" {
