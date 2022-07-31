@@ -15,11 +15,6 @@ resource "cloudflare_record" "a_records" {
       ip      = chomp(data.http.my_public_ip.body)
       proxied = true
     },
-    "Freshrss" : {
-      name    = "freshrss"
-      ip      = chomp(data.http.my_public_ip.body)
-      proxied = true
-    },
     "Jellyfin" : {
       name    = "jelly"
       ip      = chomp(data.http.my_public_ip.body)
