@@ -1,3 +1,7 @@
+locals {
+  my_public_ip = chomp(data.http.my_public_ip.body)
+}
+
 resource "cloudflare_record" "a_records" {
   for_each = {
     "root" : {
@@ -12,12 +16,17 @@ resource "cloudflare_record" "a_records" {
     },
     "Bitwarden" : {
       name    = "bitwarden"
-      ip      = chomp(data.http.my_public_ip.body)
+      ip      = local.my_public_ip
+      proxied = true
+    },
+    "Flatnotes" : {
+      name    = "notes"
+      ip      = local.my_public_ip
       proxied = true
     },
     "Jellyfin" : {
       name    = "jelly"
-      ip      = chomp(data.http.my_public_ip.body)
+      ip      = local.my_public_ip
       proxied = true
     },
     "Hastebin" : {
@@ -32,27 +41,22 @@ resource "cloudflare_record" "a_records" {
     },
     "Kube Ops View" : {
       name    = "kube"
-      ip      = chomp(data.http.my_public_ip.body)
+      ip      = local.my_public_ip
       proxied = true
     },
     "Owncast" : {
       name    = "stream"
-      ip      = chomp(data.http.my_public_ip.body)
+      ip      = local.my_public_ip
       proxied = true
     },
     "Nextcloud" : {
       name    = "cloud"
-      ip      = chomp(data.http.my_public_ip.body)
-      proxied = true
-    },
-    "Wiki JS" : {
-      name    = "wiki"
-      ip      = chomp(data.http.my_public_ip.body)
+      ip      = local.my_public_ip
       proxied = true
     },
     "Wireguard" : {
       name    = "wg"
-      ip      = chomp(data.http.my_public_ip.body)
+      ip      = local.my_public_ip
       proxied = false
     }
   }
