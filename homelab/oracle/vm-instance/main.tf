@@ -3,10 +3,10 @@ data "oci_objectstorage_namespace" "ns" {
 }
 
 resource "oci_objectstorage_bucket" "terraform_state" {
-    compartment_id = var.tenancy_ocid
-    name = "terraform-state"
-    namespace = data.oci_objectstorage_namespace.ns.namespace
-    versioning = "Enabled"
+  compartment_id = var.tenancy_ocid
+  name           = "terraform-state"
+  namespace      = data.oci_objectstorage_namespace.ns.namespace
+  versioning     = "Enabled"
 }
 
 data "oci_core_images" "ubuntu_images" {

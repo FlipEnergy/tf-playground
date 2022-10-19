@@ -2,28 +2,28 @@ terraform {
   required_providers {
     tls = {
       source  = "hashicorp/tls"
-      version = "~> 3.1"
+      version = "~> 4.0"
     }
     acme = {
       source  = "vancluever/acme"
-      version = "~> 2.5"
+      version = "~> 2.11"
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 2.25"
+      version = "~> 3.26"
     }
     oci = {
       source  = "hashicorp/oci"
-      version = "~> 4.40"
+      version = "~> 4.96"
     }
     b2 = {
       source  = "backblaze/b2"
-      version = "~> 0.7"
+      version = "~> 0.8"
     }
     kubernetes = {
-      source = "hashicorp/kubernetes"
-      version = "~> 2.9"
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.14"
     }
   }
-  required_version = "~> 1.1.3"
+  required_version = "~> 1.3.2"
 }

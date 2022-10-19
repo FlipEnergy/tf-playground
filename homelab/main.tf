@@ -9,8 +9,8 @@ module "letsencrypt" {
 module "oracle_homelab" {
   source = "./oracle"
 
-  tenancy_ocid    = var.tenancy_ocid
-  my_email        = var.my_email
+  tenancy_ocid = var.tenancy_ocid
+  my_email     = var.my_email
 }
 
 module "cloudflare_dns" {
@@ -31,7 +31,7 @@ module "homelab_k8s" {
   }
 
   cert = "${module.letsencrypt.certificate}${module.letsencrypt.issuer_pem}"
-  key = module.letsencrypt.private_key
+  key  = module.letsencrypt.private_key
 }
 
 module "oracle_k8s" {
@@ -41,5 +41,5 @@ module "oracle_k8s" {
   }
 
   cert = "${module.letsencrypt.certificate}${module.letsencrypt.issuer_pem}"
-  key = module.letsencrypt.private_key
+  key  = module.letsencrypt.private_key
 }

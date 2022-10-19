@@ -1,6 +1,6 @@
 resource "kubernetes_secret" "default_ingress_nginx_tls" {
   metadata {
-    name = "letsencrypt-tls"
+    name      = "letsencrypt-tls"
     namespace = "default"
   }
 

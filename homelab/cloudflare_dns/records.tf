@@ -1,5 +1,5 @@
 locals {
-  my_public_ip = chomp(data.http.my_public_ip.body)
+  my_public_ip = chomp(data.http.my_public_ip.response_body)
 }
 
 resource "cloudflare_record" "a_records" {
