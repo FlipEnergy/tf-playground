@@ -25,7 +25,7 @@ variable "vm_os" {
 }
 
 variable "vm_os_version" {
-  default = "20.04"
+  default = "22.04"
 }
 
 variable "boot_volume_size_in_gbs" {
