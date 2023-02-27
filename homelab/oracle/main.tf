@@ -10,7 +10,7 @@ module "oracle_arm_1" {
   availability_domain = data.oci_identity_availability_domains.availability_domains.availability_domains[0].name
   subnet_id           = oci_core_subnet.https_subnet.id
   vm_shape            = "VM.Standard.A1.Flex"
-  # vm_image_override   = "ocid1.image.oc1.ca-toronto-1.aaaaaaaae4fomnpmoh3opjlqth3grcjesn725pb2vz6gp6t46oyww274vmjq"
+  vm_image_override   = "ocid1.image.oc1.ca-toronto-1.aaaaaaaaqcjazqli45eg46vhjiiqkx47nuqbestoeju5rxh74273xsnfczga"
   vm_ocpus            = 4
   vm_memory_gbs       = 24
 }
