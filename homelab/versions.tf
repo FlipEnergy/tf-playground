@@ -10,7 +10,7 @@ terraform {
     }
     cloudflare = {
       source  = "cloudflare/cloudflare"
-      version = "~> 3.26"
+      version = "~> 4.0"
     }
     oci = {
       source  = "hashicorp/oci"
