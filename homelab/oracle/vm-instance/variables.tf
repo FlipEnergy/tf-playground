@@ -37,5 +37,5 @@ variable "availability_domain" {}
 variable "subnet_id" {}
 
 variable "ssh_pub_key_path" {
-  default = "/home/dennis/.ssh/homelab.pub"
+  default = "./homelab.pub"
 }
