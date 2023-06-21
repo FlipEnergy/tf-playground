@@ -44,11 +44,6 @@ resource "cloudflare_record" "a_records" {
       ip      = local.my_public_ip
       proxied = true
     },
-    "Libreddit" : {
-      name    = "reddit"
-      ip      = var.oracle_arm_1_public_ip
-      proxied = true
-    },
     "Nextcloud" : {
       name    = "cloud"
       ip      = local.my_public_ip
