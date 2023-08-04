@@ -44,6 +44,11 @@ resource "cloudflare_record" "a_records" {
       ip      = local.my_public_ip
       proxied = true
     },
+    "Oracle Kube Ops View" : {
+      name    = "kube2"
+      ip      = var.oracle_arm_1_public_ip
+      proxied = true
+    },
     "Nextcloud" : {
       name    = "cloud"
       ip      = local.my_public_ip
