@@ -10,10 +10,6 @@ variable "cloudflare_api_key" {
   sensitive = true
 }
 
-variable "my_public_ip" {
-  default = "71.197.233.153"
-}
-
 variable "tenancy_ocid" {
   sensitive = true
 }
