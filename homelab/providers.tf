@@ -1,7 +1,3 @@
-provider "acme" {
-  server_url = "https://acme-v02.api.letsencrypt.org/directory"
-}
-
 provider "cloudflare" {
   email   = var.my_email
   api_key = var.cloudflare_api_key
@@ -18,16 +14,4 @@ provider "oci" {
 provider "b2" {
   application_key    = var.b2_app_key
   application_key_id = var.b2_key_id
-}
-
-provider "kubernetes" {
-  alias          = "homelab"
-  config_path    = "~/.kube/config"
-  config_context = "homelab"
-}
-
-provider "kubernetes" {
-  alias          = "oracle"
-  config_path    = "~/.kube/config"
-  config_context = "oracle"
 }
