@@ -1,5 +1,5 @@
 locals {
-  my_public_ip = chomp(data.http.my_public_ip.response_body)
+  my_public_ip             = chomp(data.http.my_public_ip.response_body)
   pleasenoddos_root_domain = "pleasenoddos.com"
   pleasenoddos_a_records = {
     "root" : {
