@@ -15,3 +15,22 @@ module "cloudflare_dns" {
 module "backblaze" {
   source = "./backblaze"
 }
+
+# Cloudflare
+
+# Zone permissions
+data "cloudflare_api_token_permission_groups" "all" {}
+
+# Token allowed to edit DNS entries and TLS certs for specific zone.
+resource "cloudflare_api_token" "dns_tls_edit_token" {
+  name = "dns_tls_edit"
+
+  policy {
+    permission_groups = [
+      data.cloudflare_api_token_permission_groups.all.permissions["DNS Write"],
+    ]
+    resources = {
+      "com.cloudflare.api.account.zone.*" = "*"
+    }
+  }
+}

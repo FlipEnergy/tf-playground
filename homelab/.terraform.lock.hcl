@@ -71,24 +71,6 @@ provider "registry.terraform.io/hashicorp/http" {
   ]
 }
 
-provider "registry.terraform.io/hashicorp/kubernetes" {
-  version     = "2.22.0"
-  constraints = "~> 2.14"
-  hashes = [
-    "h1:DJr88+52tPK4Ft9xltF6YL+sRz8HWLP2ZOfFiKSB5Dc=",
-    "h1:EBi28mEwbQJXL25oZCMaPrOUvMm6fukV5hUPleKY2w0=",
-    "h1:EaHpk0hY0urPcZQ4n7LgycQHklUNvoC8u+WTAH35vhg=",
-    "h1:N2Nta6li+07oT02gcgLzAU4goGIWNXY2zqKUV/9rLLE=",
-    "h1:PdThbypFQ5Wc0PQFzcef5y0z52EfgbSNW1S7ZgMQWW0=",
-    "h1:Tt9Ux7AfdVWeRhAkdnhknthwevYPYePnuv0mYKQ0pOY=",
-    "h1:b6Wj111/wsMNg8FrHFXrf4mCZFtSXKHx4JvbZh3YTCY=",
-    "h1:jA1dtidWHrxf0D3V7BoVc7wbzKchpIjwINBW3DiOR44=",
-    "h1:majnb9AYactsjXcDYDa9+wiiNFSVVIfBEMQowzTMo6E=",
-    "h1:o7d0icd+92XLs1l83GUYFujHl70CZ7VioYuI827hydo=",
-    "h1:sAHTYTbgC61YwliQTjN30Cybyb/V4Aq1GAWKg30Mx3c=",
-  ]
-}
-
 provider "registry.terraform.io/hashicorp/oci" {
   version     = "5.23.0"
   constraints = "~> 5.0"
@@ -152,25 +134,5 @@ provider "registry.terraform.io/hashicorp/tls" {
     "zh:c657e121af8fde19964482997f0de2d5173217274f6997e16389e7707ed8ece8",
     "zh:d68b07a67fbd604c38ec9733069fbf23441436fecf554de6c75c032f82e1ef19",
     "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c",
-  ]
-}
-
-provider "registry.terraform.io/vancluever/acme" {
-  version     = "2.15.1"
-  constraints = "~> 2.11"
-  hashes = [
-    "h1:6mo/I0qdQ2EnMcNPFZ3W13Y0zOXc0Uznfr5RAI9/aCc=",
-    "h1:B53zPcpsDRKFg4miazXhKW19sj3BFMh/R+lGsyBJPBg=",
-    "h1:DPYRhdGacuIng/i/fr3Y0FcMM/DIHqgMk83QdGOfcrg=",
-    "h1:DYFTENnbMBfLd0crikQBJ55B7R8/s4AmzKbvlRopXs4=",
-    "h1:KQ17Ex1BHA9fFJdsYMtAxAaXoUvwlWe95LYuB1nFrUc=",
-    "h1:OmibPZYVbqHfAZ5styhR+7TFGNiU2js4Imtus7VtihY=",
-    "h1:d5x1SKf8vE5EQSOaV5wFFNTaGduxxXqxpzYC1k5zN2s=",
-    "h1:dAquR80Mch1gYkOildz97bSUGvigCg5yDfHP67PCJ+g=",
-    "h1:jDafAlQIUvHZe8q++TLAAP8sBl9JfAxFvRSI477HSws=",
-    "h1:lq7BpvxjHzcdqIeZ+48MzDw4erEFdT79u8cuyf/PgHQ=",
-    "h1:m9ibZeFYRAzRruwhngjxLTOj5XQns7QHlYha/n7ZKkU=",
-    "h1:ryEaYSNRuuOLwct5kf6JrchrbDCkKj1VKYcRnrV8lRw=",
-    "h1:uJDSJtWeWxpxYJ+feH6yr9lHJ9GWMsmlR64Ugnk6rzA=",
   ]
 }

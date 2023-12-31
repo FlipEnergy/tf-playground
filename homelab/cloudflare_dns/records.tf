@@ -2,6 +2,7 @@ locals {
   my_public_ip = chomp(data.http.my_public_ip.response_body)
 }
 
+# just create the entries, DDNS takes over updating so we ignore_changes on the ip
 resource "cloudflare_record" "a_records" {
   for_each = {
     "root" : {
@@ -60,6 +61,9 @@ resource "cloudflare_record" "a_records" {
   type    = "A"
   value   = each.value.ip
   zone_id = cloudflare_zone.pleasenoddos_zone.id
+  lifecycle {
+    ignore_changes = [value]
+  }
 }
 
 resource "cloudflare_record" "cname_records" {

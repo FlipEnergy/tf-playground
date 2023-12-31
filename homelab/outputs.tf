@@ -18,3 +18,13 @@ output "b2_app_key" {
   value     = module.backblaze.app_key
   sensitive = true
 }
+
+output "pleasenoddos_zone_id" {
+  value     = module.cloudflare_dns.pleasenoddos_zone_id
+  sensitive = true
+}
+
+output "cloudflare_dns_edit_token" {
+  value     = cloudflare_api_token.dns_tls_edit_token.value
+  sensitive = true
+}
