@@ -27,7 +27,7 @@ resource "cloudflare_api_token" "dns_tls_edit_token" {
 
   policy {
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.permissions["DNS Write"],
+      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
     ]
     resources = {
       "com.cloudflare.api.account.zone.*" = "*"
