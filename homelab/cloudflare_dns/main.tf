@@ -20,6 +20,11 @@ resource "cloudflare_zone_settings_override" "zone_settings" {
       html = "off"
     }
   }
+  lifecycle {
+    ignore_changes = [
+      initial_settings
+    ]
+  }
 }
 
 resource "cloudflare_record" "a_records" {
