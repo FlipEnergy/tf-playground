@@ -1,3 +1,11 @@
-variable "my_domain" {}
+variable "root_domain" {
+  type = string
+}
 
-variable "oracle_arm_1_public_ip" {}
+variable "a_records" {
+  type = map(any)
+}
+
+variable "cname_records" {
+  type = map(any)
+}

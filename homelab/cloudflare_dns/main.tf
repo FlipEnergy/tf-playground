@@ -1,18 +1,14 @@
-data "http" "my_public_ip" {
-  url = "http://ipv4.icanhazip.com"
-}
-
 data "cloudflare_accounts" "my_account" {
   name = "Dennis Homelab"
 }
 
-resource "cloudflare_zone" "pleasenoddos_zone" {
+resource "cloudflare_zone" "zone" {
   account_id = data.cloudflare_accounts.my_account.accounts[0].id
-  zone       = var.my_domain
+  zone       = var.root_domain
 }
 
-resource "cloudflare_zone_settings_override" "pleasenoddos_settings" {
-  zone_id = cloudflare_zone.pleasenoddos_zone.id
+resource "cloudflare_zone_settings_override" "zone_settings" {
+  zone_id = cloudflare_zone.zone.id
   settings {
     always_use_https = "on"
     websockets       = "on"
