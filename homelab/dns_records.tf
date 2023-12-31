@@ -48,7 +48,7 @@ locals {
     "status page" : {
       name  = "status"
       cname = "statuspage.freshping.io"
-    },
+    }
   }
 }
 
@@ -79,4 +79,12 @@ module "pleasenoddos_dns" {
   root_domain   = local.pleasenoddos_root_domain
   a_records     = local.pleasenoddos_a_records
   cname_records = local.pleasenoddos_cname_records
+}
+
+module "computersbarelywork_dns" {
+  source = "./cloudflare_dns"
+
+  root_domain   = "computersbarely.work"
+  a_records     = {}
+  cname_records = {}
 }
