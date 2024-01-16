@@ -38,6 +38,10 @@ locals {
       name = "cloud"
       ip   = local.my_public_ip
     },
+    "Stirling PDF" : {
+      name = "pdf"
+      ip   = module.oracle_homelab.oracle_arm_1_public_ip
+    },
     "Wireguard" : {
       name    = "wg"
       ip      = local.my_public_ip
