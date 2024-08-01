@@ -47,6 +47,11 @@ locals {
       ip      = local.my_public_ip
       proxied = false
     }
+    "Wireguard Canada" : {
+      name    = "wgc"
+      ip      = module.oracle_homelab.oracle_arm_1_public_ip
+      proxied = false
+    }
   }
   pleasenoddos_cname_records = {
     "status page" : {
