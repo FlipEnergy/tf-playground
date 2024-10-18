@@ -27,7 +27,7 @@ resource "cloudflare_record" "a_records" {
   name     = each.value.name
   proxied  = lookup(each.value, "proxied", true)
   type     = "A"
-  content    = each.value.ip
+  content  = each.value.ip
   zone_id  = cloudflare_zone.zone.id
 }
 
@@ -36,6 +36,6 @@ resource "cloudflare_record" "cname_records" {
   name     = each.value.name
   proxied  = true
   type     = "CNAME"
-  content    = each.value.cname
+  content  = each.value.cname
   zone_id  = cloudflare_zone.zone.id
 }
