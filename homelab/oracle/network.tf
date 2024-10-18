@@ -40,20 +40,13 @@ resource "oci_core_security_list" "https_security_list" {
       max = 443
     }
   }
-}
-
-resource "oci_core_security_list" "pihole_security_list" {
-  display_name   = "Pi-Hole Security List"
-  compartment_id = var.tenancy_ocid
-  vcn_id         = oci_core_vcn.homelab_vcn.id
-
   ingress_security_rules {
-    description = "Allow Pi-Hole DNS traffic"
+    description = "Allow wireguard UDP traffic"
     protocol    = 17 # UDP
     source      = "0.0.0.0/0"
     udp_options {
-      min = 53
-      max = 53
+      min = 51820
+      max = 51820
     }
   }
 }
@@ -88,18 +81,5 @@ resource "oci_core_subnet" "https_subnet" {
   security_list_ids = [
     oci_core_vcn.homelab_vcn.default_security_list_id,
     oci_core_security_list.https_security_list.id
-  ]
-}
-
-resource "oci_core_subnet" "pihole_subnet" {
-  display_name              = "Pi-Hole Subnet"
-  cidr_block                = "10.0.70.0/24"
-  compartment_id            = var.tenancy_ocid
-  vcn_id                    = oci_core_vcn.homelab_vcn.id
-  prohibit_internet_ingress = false
-  route_table_id            = oci_core_route_table.route_table.id
-  security_list_ids = [
-    oci_core_vcn.homelab_vcn.default_security_list_id,
-    oci_core_security_list.pihole_security_list.id
   ]
 }

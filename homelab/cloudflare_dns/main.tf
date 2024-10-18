@@ -14,11 +14,6 @@ resource "cloudflare_zone_settings_override" "zone_settings" {
     websockets       = "on"
     ssl              = "strict"
     min_tls_version  = "1.2"
-    minify {
-      css  = "on"
-      js   = "off"
-      html = "off"
-    }
   }
   lifecycle {
     ignore_changes = [
@@ -32,7 +27,7 @@ resource "cloudflare_record" "a_records" {
   name     = each.value.name
   proxied  = lookup(each.value, "proxied", true)
   type     = "A"
-  value    = each.value.ip
+  content    = each.value.ip
   zone_id  = cloudflare_zone.zone.id
 }
 
@@ -41,6 +36,6 @@ resource "cloudflare_record" "cname_records" {
   name     = each.value.name
   proxied  = true
   type     = "CNAME"
-  value    = each.value.cname
+  content    = each.value.cname
   zone_id  = cloudflare_zone.zone.id
 }
