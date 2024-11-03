@@ -34,6 +34,10 @@ locals {
       name = "kube"
       ip   = local.my_public_ip
     },
+    "Navidrome" : {
+      name = "navidrome"
+      ip   = local.my_public_ip
+    },
     "Nextcloud" : {
       name = "cloud"
       ip   = local.my_public_ip
