@@ -18,10 +18,6 @@ locals {
       name = "notes"
       ip   = local.my_public_ip
     },
-    "Jellyfin" : {
-      name = "jelly"
-      ip   = local.my_public_ip
-    },
     "Hastebin" : {
       name = "haste"
       ip   = module.oracle_homelab.oracle_arm_1_public_ip
