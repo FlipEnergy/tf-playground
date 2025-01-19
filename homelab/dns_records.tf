@@ -10,6 +10,10 @@ locals {
       name = "www"
       ip   = module.oracle_homelab.oracle_arm_1_public_ip
     },
+    "Airsonic-refix" : {
+      name = "music"
+      ip   = local.my_public_ip
+    },
     "Bitwarden" : {
       name = "bitwarden"
       ip   = local.my_public_ip
