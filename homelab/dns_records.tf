@@ -30,8 +30,8 @@ locals {
       name = "kube"
       ip   = local.my_public_ip
     },
-    "Navidrome" : {
-      name = "navidrome"
+    "Gonic" : {
+      name = "gonic"
       ip   = local.my_public_ip
     },
     "Nextcloud" : {
