@@ -12,7 +12,7 @@ locals {
     },
     "Airsonic-refix" : {
       name = "music"
-      ip   = local.my_public_ip
+      ip   = module.oracle_homelab.oracle_arm_1_public_ip
     },
     "Bitwarden" : {
       name = "bitwarden"
