@@ -26,6 +26,10 @@ locals {
       name = "haste"
       ip   = module.oracle_homelab.oracle_arm_1_public_ip
     },
+    "HabitTrove" : {
+      name = "habit"
+      ip   = local.my_public_ip
+    },
     "Influxdb 2" : {
       name = "influx"
       ip   = module.oracle_homelab.oracle_arm_1_public_ip
