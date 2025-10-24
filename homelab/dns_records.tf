@@ -34,6 +34,10 @@ locals {
       name = "influx"
       ip   = module.oracle_homelab.oracle_arm_1_public_ip
     },
+    "PiKaraoke" : {
+      name = "karaoke"
+      ip   = local.my_public_ip
+    },
     "Kube Ops View" : {
       name = "kube"
       ip   = local.my_public_ip
