@@ -10,7 +10,7 @@ terraform {
     }
     oci = {
       source  = "hashicorp/oci"
-      version = "~> 6.0"
+      version = "~> 7.0"
     }
     b2 = {
       source  = "backblaze/b2"
