@@ -50,10 +50,6 @@ locals {
       name = "cloud"
       ip   = local.my_public_ip
     },
-    "Stirling PDF" : {
-      name = "pdf"
-      ip   = local.my_public_ip
-    },
     "Wireguard" : {
       name    = "wg"
       ip      = local.my_public_ip
