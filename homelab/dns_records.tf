@@ -4,15 +4,15 @@ locals {
   pleasenoddos_a_records = {
     "root" : {
       name = local.pleasenoddos_root_domain
-      ip   = module.oracle_homelab.oracle_arm_1_public_ip
+      ip   = local.my_public_ip
     },
     "www" : {
       name = "www"
-      ip   = module.oracle_homelab.oracle_arm_1_public_ip
+      ip   = local.my_public_ip
     },
     "Airsonic-refix" : {
       name = "music"
-      ip   = module.oracle_homelab.oracle_arm_1_public_ip
+      ip   = local.my_public_ip
     },
     "Bitwarden" : {
       name = "bitwarden"
@@ -24,7 +24,7 @@ locals {
     },
     "Hastebin" : {
       name = "haste"
-      ip   = module.oracle_homelab.oracle_arm_1_public_ip
+      ip   = local.my_public_ip
     },
     "HabitTrove" : {
       name = "habit"
@@ -32,7 +32,7 @@ locals {
     },
     "Influxdb 2" : {
       name = "influx"
-      ip   = module.oracle_homelab.oracle_arm_1_public_ip
+      ip   = local.my_public_ip
     },
     "PiKaraoke" : {
       name = "karaoke"
@@ -52,7 +52,7 @@ locals {
     },
     "Stirling PDF" : {
       name = "pdf"
-      ip   = module.oracle_homelab.oracle_arm_1_public_ip
+      ip   = local.my_public_ip
     },
     "Wireguard" : {
       name    = "wg"
@@ -61,7 +61,7 @@ locals {
     }
     "Wireguard Canada" : {
       name    = "wgc"
-      ip      = module.oracle_homelab.oracle_arm_1_public_ip
+      ip      = local.my_public_ip
       proxied = false
     }
   }
