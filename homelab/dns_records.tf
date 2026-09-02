@@ -55,18 +55,13 @@ locals {
       ip      = local.my_public_ip
       proxied = false
     }
-    "Wireguard Canada" : {
-      name    = "wgc"
-      ip      = local.my_public_ip
-      proxied = false
-    }
   }
-  pleasenoddos_cname_records = {
-    "status page" : {
-      name  = "status"
-      cname = "statuspage.freshping.io"
-    }
-  }
+  pleasenoddos_cname_records = {}
+  #  "status page" : {
+  #    name  = "status"
+  #    cname = "statuspage.freshping.io"
+  #  }
+  #}
 }
 
 data "http" "my_public_ip" {
