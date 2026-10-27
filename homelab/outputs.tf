@@ -2,9 +2,9 @@
 #   value = module.oracle_homelab.pi_hole_public_ip
 # }
 
-output "oracle_arm_1_public_ip" {
-  value = module.oracle_homelab.oracle_arm_1_public_ip
-}
+# output "oracle_arm_1_public_ip" {
+#   value = module.oracle_homelab.oracle_arm_1_public_ip
+# }
 
 output "b2_bucket_name" {
   value = module.backblaze.bucket_name
