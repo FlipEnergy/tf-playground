@@ -11,6 +11,6 @@ module "oracle_arm_1" {
   subnet_id           = oci_core_subnet.https_subnet.id
   vm_shape            = "VM.Standard.A1.Flex"
   #vm_image_override   = "ocid1.image.oc1.ca-toronto-1.aaaaaaaaqcjazqli45eg46vhjiiqkx47nuqbestoeju5rxh74273xsnfczga"
-  vm_ocpus            = 2
-  vm_memory_gbs       = 12
+  vm_ocpus      = 2
+  vm_memory_gbs = 12
 }
