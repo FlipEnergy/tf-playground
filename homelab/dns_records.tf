@@ -62,6 +62,18 @@ locals {
   #    cname = "statuspage.freshping.io"
   #  }
   #}
+
+  chunafishy_root_domain = "chunafishy.com"
+  chunafishy_a_records = {
+    "root" : {
+      name = local.chunafishy_root_domain
+      ip   = local.my_public_ip
+    },
+    "www" : {
+      name = "www"
+      ip   = local.my_public_ip
+    },
+  }
 }
 
 data "http" "my_public_ip" {
@@ -98,5 +110,13 @@ module "computersbarelywork_dns" {
 
   root_domain   = "computersbarely.work"
   a_records     = {}
+  cname_records = {}
+}
+
+module "chunafishy_dns" {
+  source = "./cloudflare_dns"
+
+  root_domain   = local.chunafishy_root_domain
+  a_records     = local.chunafishy_a_records
   cname_records = {}
 }
