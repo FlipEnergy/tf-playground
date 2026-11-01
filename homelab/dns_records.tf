@@ -18,16 +18,8 @@ locals {
       name = "notes"
       ip   = local.my_public_ip
     },
-    "Hastebin" : {
-      name = "haste"
-      ip   = local.my_public_ip
-    },
     "HabitTrove" : {
       name = "habit"
-      ip   = local.my_public_ip
-    },
-    "Influxdb 2" : {
-      name = "influx"
       ip   = local.my_public_ip
     },
     "PiKaraoke" : {
