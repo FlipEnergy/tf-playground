@@ -15,6 +15,8 @@ resource "cloudflare_zone_settings_override" "zone_settings" {
     ssl              = "strict"
     min_tls_version  = "1.2"
   }
+  # Terraform warns this is redundant, but it isn't: without it the plan shows
+  # an in-place update to initial_settings (seen on computersbarely.work).
   lifecycle {
     ignore_changes = [
       initial_settings
