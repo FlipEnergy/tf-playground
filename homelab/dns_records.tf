@@ -10,10 +10,6 @@ locals {
       name = "www"
       ip   = local.my_public_ip
     },
-    "Airsonic-refix" : {
-      name = "music"
-      ip   = local.my_public_ip
-    },
     "Bitwarden" : {
       name = "bitwarden"
       ip   = local.my_public_ip

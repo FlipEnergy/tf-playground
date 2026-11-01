@@ -17,5 +17,5 @@ resource "b2_application_key" "backup_key" {
     "readFiles",
     "writeFiles"
   ]
-  bucket_id = b2_bucket.truenas_backup.bucket_id
+  bucket_ids = [b2_bucket.truenas_backup.bucket_id]
 }
