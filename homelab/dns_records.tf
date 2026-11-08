@@ -69,20 +69,24 @@ data "http" "my_public_ip" {
 }
 
 # Zone permissions
-data "cloudflare_api_token_permission_groups" "all" {}
+data "cloudflare_api_token_permission_groups_list" "dns_write" {
+  name  = "DNS Write"
+  scope = "com.cloudflare.api.account.zone"
+}
 
 # Token allowed to edit DNS entries and TLS certs for specific zone.
 resource "cloudflare_api_token" "dns_tls_edit_token" {
   name = "dns_tls_edit"
 
-  policy {
+  policies = [{
+    effect = "allow"
     permission_groups = [
-      data.cloudflare_api_token_permission_groups.all.zone["DNS Write"],
+      { id = data.cloudflare_api_token_permission_groups_list.dns_write.result[0].id },
     ]
-    resources = {
+    resources = jsonencode({
       "com.cloudflare.api.account.zone.*" = "*"
-    }
-  }
+    })
+  }]
 }
 
 module "pleasenoddos_dns" {
