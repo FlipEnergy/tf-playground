@@ -1,6 +1,6 @@
 # tf-playground — agent context
 
-Terraform for a personal homelab's cloud resources (owner: FlipEnergy / Dennis Zhang). Single root module: `homelab/`.
+OpenTofu (Terraform-compatible) config for a personal homelab's cloud resources (owner: FlipEnergy / Dennis Zhang). Single root module: `homelab/`.
 
 ## Ground rules for agents (read first)
 
@@ -17,9 +17,9 @@ Terraform for a personal homelab's cloud resources (owner: FlipEnergy / Dennis Z
 
 ## What it manages
 
-Provider and Terraform version constraints live in `homelab/versions.tf` (the source of truth — don't duplicate version numbers here).
+Provider and OpenTofu version constraints live in `homelab/versions.tf` (the source of truth — don't duplicate version numbers here).
 
-- **Cloudflare** (`cloudflare/cloudflare`): zones, zone settings (one `cloudflare_zone_setting` per setting: always HTTPS, websockets, strict SSL, min TLS 1.2) and A/CNAME records (`cloudflare_dns_record`, `ttl = 1` = auto) for `pleasenoddos.com`, `computersbarely.work`, `chunafishy.com` via the local `cloudflare_dns` module; a scoped API token `dns_tls_edit` (used by cert-manager / cf-ddns in `k8s-homelab`). Migrated from v4 to v5 in Nov 2026: Terraform 1.7 can't `moved` across resource types, and `removed` blocks fail for resource types the provider no longer knows, so the old v4 entries were `terraform state rm`'d and re-adopted via (since deleted) `import` blocks.
+- **Cloudflare** (`cloudflare/cloudflare`): zones, zone settings (one `cloudflare_zone_setting` per setting: always HTTPS, websockets, strict SSL, min TLS 1.2) and A/CNAME records (`cloudflare_dns_record`, `ttl = 1` = auto) for `pleasenoddos.com`, `computersbarely.work`, `chunafishy.com` via the local `cloudflare_dns` module; a scoped API token `dns_tls_edit` (used by cert-manager / cf-ddns in `k8s-homelab`). Migrated from v4 to v5 in Nov 2026: Terraform 1.7 can't `moved` across resource types, and `removed` blocks fail for resource types the provider no longer knows, so the old v4 entries were `state rm`'d and re-adopted via (since deleted) `import` blocks.
 - **Backblaze B2** (`backblaze/b2`): `flipenergy-homelab-truenas-backup` bucket (SSE-B2 encryption) + app key for TrueNAS backups.
 - **Oracle Cloud** (`hashicorp/oci`): the `terraform-state` object storage bucket that holds this repo's state, and a $1/month budget with an alert on any actual spend. The `vm-instance` module and network are kept but the VM is commented out, so `terraform plan` doesn't exercise them — expect fixes against newer oci provider versions if it's re-enabled.
 - **HTTP** (`hashicorp/http`): only used to fetch the public IP; not declared in `versions.tf`, so it's implicitly sourced and only pinned by the lock file.
@@ -33,7 +33,7 @@ Provider and Terraform version constraints live in `homelab/versions.tf` (the so
 | `providers.tf`, `variables.tf`, `versions.tf`, `outputs.tf` | Standard. `versions.tf` holds `required_version`; keep `homelab/mise.toml` in sync with it. |
 | `cloudflare_dns/`, `backblaze/`, `oracle/` (+ `oracle/vm-instance/`) | Local modules. |
 | `*.template` | Templates for the gitignored `terraform.tfvars` and `backend.tf`. |
-| `Makefile` | `make get-b2-key`, `make get-cf-token` — read sensitive outputs from state via `terraform show -json`. |
+| `Makefile` | `make get-b2-key`, `make get-cf-token` — read sensitive outputs from state via `tofu show -json`. |
 
 ## Secrets — important
 
@@ -43,9 +43,9 @@ Provider and Terraform version constraints live in `homelab/versions.tf` (the so
 
 ## Workflow
 
-- Run from `homelab/` via mise (`mise exec -- terraform …`, Terraform isn't on PATH otherwise): `terraform init`, `terraform validate`, `terraform fmt -recursive`, `terraform plan`. `init`/`plan` use the local gitignored `backend.tf` and `terraform.tfvars` without needing to read them.
-- `terraform apply` changes real DNS/cloud resources — only with explicit approval.
-- CI (`terraform` pipeline in sibling `concourse-pipelines`) runs on push to `main` and every Friday: `init`, `validate`, `fmt -recursive -check -diff`, `plan -lock=false -detailed-exitcode`. **Unformatted code or any pending diff fails the job**, so run `terraform fmt -recursive` and expect apply to be done manually by the owner.
+- Run from `homelab/` via mise (`mise exec -- tofu …`, OpenTofu isn't on PATH otherwise): `tofu init`, `tofu validate`, `tofu fmt -recursive`, `tofu plan`. Migrated from Terraform 1.7 to OpenTofu in Nov 2026; provider sources resolve to `registry.opentofu.org` (see `.terraform.lock.hcl`). `init`/`plan` use the local gitignored `backend.tf` and `terraform.tfvars` without needing to read them.
+- `tofu apply` changes real DNS/cloud resources — only with explicit approval.
+- CI (`terraform` pipeline in sibling `concourse-pipelines`) runs on push to `main` and every Friday: `init`, `validate`, `fmt -recursive -check -diff`, `plan -lock=false -detailed-exitcode`. **Unformatted code or any pending diff fails the job**, so run `tofu fmt -recursive` and expect apply to be done manually by the owner.
 - Use `moved {}` blocks when refactoring resource addresses to avoid destroy/recreate.
 - Renovate (`renovate.json`) bumps provider versions. Its branches are often many commits behind `main`, so a plan run directly on a Renovate branch can show unrelated destroys; to evaluate a bump, apply the PR's commit on top of `main` (`git cherry-pick --no-commit <sha>`) and plan that.
 - Commit and push directly to `main` (no feature branches). Use the `gh` CLI for PRs; Renovate PRs are merged with merge commits.

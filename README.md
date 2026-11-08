@@ -1,8 +1,8 @@
 # tf-playground
-A repo for my Terraform configurations
+A repo for my OpenTofu (Terraform-compatible) configurations
 
 ## requirements
-- [mise](https://mise.jdx.dev/), which installs the Terraform version pinned in `homelab/mise.toml` (run it with `mise exec -- terraform ...` from `homelab/`)
+- [mise](https://mise.jdx.dev/), which installs the OpenTofu version pinned in `homelab/mise.toml` (run it with `mise exec -- tofu ...` from `homelab/`)
 - `homelab/terraform.tfvars` and `homelab/backend.tf`, created from the `*.template` files
 
 ## What it manages
