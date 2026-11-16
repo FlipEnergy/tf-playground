@@ -1,14 +1,3 @@
-data "oci_objectstorage_namespace" "ns" {
-  compartment_id = var.tenancy_ocid
-}
-
-resource "oci_objectstorage_bucket" "terraform_state" {
-  compartment_id = var.tenancy_ocid
-  name           = "terraform-state"
-  namespace      = data.oci_objectstorage_namespace.ns.namespace
-  versioning     = "Enabled"
-}
-
 data "oci_identity_availability_domains" "availability_domains" {
   compartment_id = var.tenancy_ocid
 }

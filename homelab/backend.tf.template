@@ -1,6 +1,16 @@
 terraform {
-  backend "http" {
-    address       = "<Redacted>"
-    update_method = "PUT"
+  backend "s3" {
+    bucket     = "<b2 bucket name>"
+    key        = "homelab/terraform.tfstate"
+    region     = "<b2 region, e.g. us-west-004>"
+    endpoints  = { s3 = "https://s3.<b2 region>.backblazeb2.com" }
+    access_key = "<b2 application key ID>"
+    secret_key = "<b2 application key>"
+
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_metadata_api_check     = true
+    skip_s3_checksum            = true
   }
 }

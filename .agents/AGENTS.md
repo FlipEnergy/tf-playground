@@ -27,7 +27,7 @@ Provider and OpenTofu version constraints live in `homelab/versions.tf` (the sou
 
 - **Cloudflare** (`cloudflare/cloudflare`): zones, zone settings (one `cloudflare_zone_setting` per setting: always HTTPS, websockets, strict SSL, min TLS 1.2) and A/CNAME records (`cloudflare_dns_record`, `ttl = 1` = auto) for `pleasenoddos.com`, `computersbarely.work`, `chunafishy.com` via the local `cloudflare_dns` module; a scoped API token `dns_tls_edit` (used by cert-manager / cf-ddns in `k8s-homelab`). Migrated from v4 to v5 in Nov 2026: Terraform 1.7 can't `moved` across resource types, and `removed` blocks fail for resource types the provider no longer knows, so the old v4 entries were `state rm`'d and re-adopted via (since deleted) `import` blocks.
 - **Backblaze B2** (`backblaze/b2`): `flipenergy-homelab-truenas-backup` bucket (SSE-B2 encryption) + app key for TrueNAS backups.
-- **Oracle Cloud** (`hashicorp/oci`): the `terraform-state` object storage bucket that holds this repo's state, and a $1/month budget with an alert on any actual spend. The `vm-instance` module and network are kept but the VM is commented out, so `terraform plan` doesn't exercise them — expect fixes against newer oci provider versions if it's re-enabled.
+- **Oracle Cloud** (`hashicorp/oci`): a $1/month budget with an alert on any actual spend. The `vm-instance` module and network are kept but the VM is commented out, so `terraform plan` doesn't exercise them — expect fixes against newer oci provider versions if it's re-enabled.
 - **HTTP** (`hashicorp/http`): only used to fetch the public IP; not declared in `versions.tf`, so it's implicitly sourced and only pinned by the lock file.
 
 ## Layout (`homelab/`)
@@ -35,7 +35,8 @@ Provider and OpenTofu version constraints live in `homelab/versions.tf` (the sou
 | File | Purpose |
 |---|---|
 | `dns_records.tf` | DNS record maps (`locals`) and module calls per zone. A records point at the current public IP fetched from `icanhazip.com` at plan time. Add `proxied = false` to bypass Cloudflare proxy (e.g. WireGuard). |
-| `main.tf` | Oracle and Backblaze module calls, `moved` blocks. |
+| `main.tf` | Oracle and Backblaze module calls, plus any `moved` blocks. |
+| `encryption.tf` | OpenTofu state encryption (pbkdf2 + AES-GCM, `enforced = true`) keyed by the sensitive `state_passphrase` variable. |
 | `providers.tf`, `variables.tf`, `versions.tf`, `outputs.tf` | Standard. `versions.tf` holds `required_version`; keep `homelab/mise.toml` in sync with it. |
 | `cloudflare_dns/`, `backblaze/`, `oracle/` (+ `oracle/vm-instance/`) | Local modules. |
 | `*.template` | Templates for the gitignored `terraform.tfvars` and `backend.tf`. |
@@ -43,9 +44,10 @@ Provider and OpenTofu version constraints live in `homelab/versions.tf` (the sou
 
 ## Secrets — important
 
-- `homelab/terraform.tfvars` and `homelab/backend.tf` are **gitignored and may exist locally with real credentials** (the backend address is an Oracle pre-authenticated URL with write access to state). Never print, copy, or commit their contents; never inline them into tracked files.
+- `homelab/terraform.tfvars` and `homelab/backend.tf` are **gitignored and may exist locally with real credentials** (`backend.tf` holds the B2 bucket-scoped key for the `s3` state backend; `terraform.tfvars` holds `state_passphrase`, which decrypts the state). Never print, copy, or commit their contents; never inline them into tracked files.
 - The OCI private key is read from `~/.ssh/oracle.pem` by default.
 - Outputs `b2_app_key` and `cloudflare_dns_edit_token` are sensitive.
+- The state bucket and its key are created by hand in the B2 UI, not managed here, so the key never lands in the state it protects. Losing `state_passphrase` makes the state unreadable; it is kept in Bitwarden with the other CI secrets.
 
 ## Workflow
 

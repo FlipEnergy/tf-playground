@@ -8,7 +8,10 @@ A repo for my OpenTofu (Terraform-compatible) configurations
 ## What it manages
 - Cloudflare zones, zone settings, DNS records and an API token for DNS edits
 - Backblaze B2 bucket and app key for TrueNAS backups
-- Oracle Cloud object storage bucket that holds the Terraform state, plus a $1/month budget alert
+- Oracle Cloud $1/month budget alert
+
+## State
+State lives in a private Backblaze B2 bucket (S3-compatible backend) with a bucket-scoped key, and is encrypted client-side with OpenTofu state encryption (`homelab/encryption.tf`). The passphrase is `state_passphrase` in `terraform.tfvars`; without it the state can't be read.
 
 ## Oracle Cloud
 - https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/tf-provider/01-summary.htm
