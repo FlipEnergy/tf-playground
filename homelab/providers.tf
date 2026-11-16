@@ -3,13 +3,13 @@ provider "cloudflare" {
   api_key = var.cloudflare_api_key
 }
 
-provider "oci" {
-  tenancy_ocid     = var.tenancy_ocid
-  user_ocid        = var.user_ocid
-  private_key_path = var.oci_private_key_path
-  fingerprint      = var.fingerprint
-  region           = var.region
-}
+# provider "oci" {
+#   tenancy_ocid     = var.tenancy_ocid
+#   user_ocid        = var.user_ocid
+#   private_key_path = var.oci_private_key_path
+#   fingerprint      = var.fingerprint
+#   region           = var.region
+# }
 
 provider "b2" {
   application_key    = var.b2_app_key

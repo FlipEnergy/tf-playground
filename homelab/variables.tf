@@ -10,25 +10,25 @@ variable "cloudflare_api_key" {
   sensitive = true
 }
 
-variable "tenancy_ocid" {
-  sensitive = true
-}
+# variable "tenancy_ocid" {
+#   sensitive = true
+# }
 
-variable "user_ocid" {
-  sensitive = true
-}
+# variable "user_ocid" {
+#   sensitive = true
+# }
 
-variable "oci_private_key_path" {
-  default = "/home/dennis/.ssh/oracle.pem"
-}
+# variable "oci_private_key_path" {
+#   default = "./oracle.pem"
+# }
 
-variable "fingerprint" {
-  sensitive = true
-}
+# variable "fingerprint" {
+#   sensitive = true
+# }
 
-variable "region" {
-  default = "ca-toronto-1"
-}
+# variable "region" {
+#   default = "ca-toronto-1"
+# }
 
 variable "b2_app_key" {
   sensitive = true
