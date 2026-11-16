@@ -23,3 +23,8 @@ output "cloudflare_dns_edit_token" {
   value     = cloudflare_api_token.dns_tls_edit_token.value
   sensitive = true
 }
+
+output "cloudflare_tunnel_token" {
+  value     = data.cloudflare_zero_trust_tunnel_cloudflared_token.homelab.token
+  sensitive = true
+}

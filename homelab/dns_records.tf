@@ -2,42 +2,33 @@ locals {
   my_public_ip             = chomp(data.http.my_public_ip.response_body)
   pleasenoddos_root_domain = "pleasenoddos.com"
   pleasenoddos_a_records = {
-    "root" : {
+    "root" : merge(local.via_tunnel, {
       name = local.pleasenoddos_root_domain
-      ip   = local.my_public_ip
-    },
-    "www" : {
+    }),
+    "www" : merge(local.via_tunnel, {
       name = "www"
-      ip   = local.my_public_ip
-    },
-    "Bitwarden" : {
+    }),
+    "Bitwarden" : merge(local.via_tunnel, {
       name = "bitwarden"
-      ip   = local.my_public_ip
-    },
-    "Flatnotes" : {
+    }),
+    "Flatnotes" : merge(local.via_tunnel, {
       name = "notes"
-      ip   = local.my_public_ip
-    },
-    "HabitTrove" : {
+    }),
+    "HabitTrove" : merge(local.via_tunnel, {
       name = "habit"
-      ip   = local.my_public_ip
-    },
-    "PiKaraoke" : {
+    }),
+    "PiKaraoke" : merge(local.via_tunnel, {
       name = "karaoke"
-      ip   = local.my_public_ip
-    },
-    "Kube Ops View" : {
+    }),
+    "Kube Ops View" : merge(local.via_tunnel, {
       name = "kube"
-      ip   = local.my_public_ip
-    },
-    "Gonic" : {
+    }),
+    "Gonic" : merge(local.via_tunnel, {
       name = "gonic"
-      ip   = local.my_public_ip
-    },
-    "Nextcloud" : {
+    }),
+    "Nextcloud" : merge(local.via_tunnel, {
       name = "cloud"
-      ip   = local.my_public_ip
-    },
+    }),
     "Wireguard" : {
       name    = "wg"
       ip      = local.my_public_ip

@@ -5,3 +5,6 @@ get-b2-key:
 
 get-cf-token: output := cloudflare_dns_edit_token
 get-cf-token: get-b2-key
+
+get-tunnel-token: output := cloudflare_tunnel_token
+get-tunnel-token: get-b2-key
