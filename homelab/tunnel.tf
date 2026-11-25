@@ -16,8 +16,8 @@ locals {
     if lookup(r, "type", "A") == "CNAME"
   ])
 
-  # In-cluster ingress controller (k8s-homelab: ingress-nginx).
-  tunnel_origin = "https://ingress-nginx-controller.ingress-nginx.svc.cluster.local:443"
+  # In-cluster ingress controller (k8s-homelab: traefik).
+  tunnel_origin = "https://traefik.traefik.svc.cluster.local:443"
 }
 
 data "cloudflare_accounts" "homelab" {
@@ -38,7 +38,7 @@ resource "cloudflare_zero_trust_tunnel_cloudflared_config" "homelab" {
 
   config = {
     origin_request = {
-      # Send the requested hostname as SNI so ingress-nginx serves that
+      # Send the requested hostname as SNI so the ingress controller serves that
       # host's Let's Encrypt cert, which cloudflared then verifies.
       match_sn_ito_host = true
     }
